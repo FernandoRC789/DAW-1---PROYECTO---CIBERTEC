@@ -6,5 +6,5 @@ import pe.cibertec.model.Reclamo;
 import java.util.List;
 
 public interface ReclamoRepository extends JpaRepository<Reclamo, Long> {
-    List<Reclamo> finByCiudadanoId(Long CiudadanoId);
+    List<Reclamo> findByCiudadanoId(Long ciudadanoId);
 }

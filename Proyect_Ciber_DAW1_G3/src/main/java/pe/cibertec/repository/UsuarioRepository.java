@@ -5,6 +5,7 @@ import pe.cibertec.model.Usuario;
 
 import java.util.Optional;
 
-public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
-    Optional<Usuario> findByUserName(String username);
+public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
+    Optional<Usuario> findByUsername(String username);
+    boolean existsByUsername(String username);
 }

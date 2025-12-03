@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "usuario")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -22,5 +22,6 @@ public class Usuario {
     @Column(nullable = false)
     private String password; // almacenado con BCrypt
 
+    @Column(nullable = false)
     private String rol; // ADMIN o USER
 }
