@@ -3,6 +3,8 @@ package pe.cibertec.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "historial_estado")
 @Getter
@@ -26,4 +28,7 @@ public class HistorialEstado {
     @ManyToOne
     @JoinColumn(name = "usuario_responsable")
     private Usuario usuarioResponsable;
+
+    @Column(name = "fecha_cambio")
+    private LocalDateTime fechaCambio;
 }
