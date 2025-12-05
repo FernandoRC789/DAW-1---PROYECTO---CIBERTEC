@@ -4,6 +4,9 @@ import org.springframework.stereotype.Service;
 import pe.cibertec.model.Ciudadano;
 import pe.cibertec.repository.CiudadanoRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CiudadanoService {
 
@@ -23,5 +26,29 @@ public class CiudadanoService {
     public Ciudadano buscarPorDni(String dni) {
         return ciudadanoRepository.findByDni(dni)
                 .orElse(null);
+    }
+
+    public List<Ciudadano> findAll() {
+        return ciudadanoRepository.findAll();
+    }
+
+    public Optional<Ciudadano> findById(Long id) {
+        return ciudadanoRepository.findById(id);
+    }
+
+    public Optional<Ciudadano> findByDni(String dni) {
+        return ciudadanoRepository.findByDni(dni);
+    }
+
+    public Ciudadano save(Ciudadano c) {
+        return ciudadanoRepository.save(c);
+    }
+
+    public void delete(Long id) {
+        ciudadanoRepository.deleteById(id);
+    }
+
+    public boolean existsByDni(String dni) {
+        return ciudadanoRepository.existsByDni(dni);
     }
 }

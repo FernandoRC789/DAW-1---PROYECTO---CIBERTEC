@@ -16,4 +16,12 @@ public class HistorialEstadoService {
     public void registrarCambio(HistorialEstado h) {
         historialEstadoRepository.save(h);
     }
+
+    public HistorialEstado save(HistorialEstado h) {
+        return repo.save(h);
+    }
+
+    public List<HistorialEstado> findByReclamoId(Long reclamoId) {
+        return repo.findByReclamoId(reclamoId);
+    }
 }
