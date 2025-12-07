@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import pe.cibertec.model.HistorialEstado;
 import pe.cibertec.repository.HistorialEstadoRepository;
 
+import java.util.List;
+
 @Service
 public class HistorialEstadoService {
 
@@ -18,10 +20,10 @@ public class HistorialEstadoService {
     }
 
     public HistorialEstado save(HistorialEstado h) {
-        return repo.save(h);
+        return historialEstadoRepository.save(h);
     }
 
     public List<HistorialEstado> findByReclamoId(Long reclamoId) {
-        return repo.findByReclamoId(reclamoId);
+        return historialEstadoRepository.findByReclamoId(reclamoId);
     }
 }

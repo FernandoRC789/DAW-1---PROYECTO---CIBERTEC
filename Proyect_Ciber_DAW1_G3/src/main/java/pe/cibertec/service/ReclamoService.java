@@ -94,7 +94,7 @@ public class ReclamoService {
 
             r.setAsunto(updated.getAsunto());
             r.setDescripcion(updated.getDescripcion());
-            r.setTipo(updated.getTipo());
+            r.setTipoReclamo(updated.getTipoReclamo());
             r.setPrioridad(updated.getPrioridad());
             // NO se cambia fechaRegistro
 
