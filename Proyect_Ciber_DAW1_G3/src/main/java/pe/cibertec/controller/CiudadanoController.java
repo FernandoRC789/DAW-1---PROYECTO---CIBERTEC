@@ -1,6 +1,7 @@
 package pe.cibertec.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.cibertec.model.Ciudadano;
 import pe.cibertec.service.CiudadanoService;
@@ -30,14 +31,16 @@ public class CiudadanoController {
         return ciudadanoService.save(ciudadano);
     }
 
+    // ACTUALIZAR
     @PutMapping("/{id}")
     public Ciudadano actualizar(@PathVariable Long id, @RequestBody Ciudadano ciudadano) {
-        ciudadano.setId(id);
-        return ciudadanoService.save(ciudadano);
+        return ciudadanoService.update(id, ciudadano);
     }
 
+    // ELIMINAR
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
+    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         ciudadanoService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

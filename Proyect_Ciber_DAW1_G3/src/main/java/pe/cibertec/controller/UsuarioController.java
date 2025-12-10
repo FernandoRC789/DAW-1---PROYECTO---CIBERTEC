@@ -24,7 +24,7 @@ public class UsuarioController {
         return usuarioService.findById(id);
     }
 
-    @PostMapping
+    @PostMapping("/registrar")
     public Usuario crear(@RequestBody Usuario usuario) {
         return usuarioService.save(usuario);
     }

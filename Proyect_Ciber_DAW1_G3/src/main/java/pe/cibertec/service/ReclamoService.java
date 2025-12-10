@@ -53,6 +53,14 @@ public class ReclamoService {
         return reclamoRepository.findById(id);
     }
 
+    public Reclamo save(Reclamo reclamo) {
+        if (reclamo.getId() == null) {
+            reclamo.setFechaRegistro(LocalDateTime.now());
+            reclamo.setEstado(EstadoReclamo.REGISTRADO);
+        }
+        return reclamoRepository.save(reclamo);
+    }
+
     public List<Reclamo> findByCiudadanoId(Long ciudadanoId) {
         return reclamoRepository.findByCiudadanoId(ciudadanoId);
     }
@@ -140,5 +148,9 @@ public class ReclamoService {
         historialService.save(h);
 
         return saved;
+    }
+
+    public List<HistorialEstado> getHistorialByReclamo(Long reclamoId) {
+        return historialService.findByReclamoId(reclamoId);
     }
 }

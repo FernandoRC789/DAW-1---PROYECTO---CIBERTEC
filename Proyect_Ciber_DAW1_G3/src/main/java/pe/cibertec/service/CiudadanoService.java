@@ -44,6 +44,18 @@ public class CiudadanoService {
         return ciudadanoRepository.save(c);
     }
 
+    public Ciudadano update(Long id, Ciudadano data) {
+        return ciudadanoRepository.findById(id).map(c -> {
+            c.setNombres(data.getNombres());
+            c.setApellidos(data.getApellidos());
+            c.setDni(data.getDni());
+            c.setDireccion(data.getDireccion());
+            c.setTelefono(data.getTelefono());
+            c.setCorreo(data.getCorreo());
+            return ciudadanoRepository.save(c);
+        }).orElseThrow(() -> new RuntimeException("Ciudadano no encontrado: " + id));
+    }
+
     public void delete(Long id) {
         ciudadanoRepository.deleteById(id);
     }
