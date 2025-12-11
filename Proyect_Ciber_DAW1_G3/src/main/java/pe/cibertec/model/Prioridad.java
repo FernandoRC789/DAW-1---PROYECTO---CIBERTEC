@@ -14,7 +14,7 @@ public class Prioridad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     private String nombre;        // BAJA / MEDIA / ALTA
     private String descripcion;

@@ -12,6 +12,6 @@ import java.util.Optional;
 public interface CiudadanoRepository extends JpaRepository<Ciudadano, Long> {
     boolean existsByDni(String dni);
     Optional<Ciudadano> findByDni(String dni);
-    List<Reclamo> findByCiudadanoId(Long ciudadanoId);
+    //List<Reclamo> findByCiudadanoId(Long Id);
 
 }

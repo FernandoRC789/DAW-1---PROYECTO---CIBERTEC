@@ -19,5 +19,6 @@ public class TipoReclamo {
     @Column(nullable = false)
     private String nombre;
 
+    @Column(nullable = false)
     private String descripcion;
 }

@@ -1,6 +1,5 @@
 package pe.cibertec.service;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pe.cibertec.model.Usuario;
 import pe.cibertec.repository.UsuarioRepository;
@@ -12,11 +11,11 @@ import java.util.Optional;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-    private final PasswordEncoder passwordEncoder;
+    //private final PasswordEncoder passwordEncoder;
 
-    public UsuarioService(UsuarioRepository usuarioRepository, PasswordEncoder passwordEncoder) {
+    public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
-        this.passwordEncoder = passwordEncoder;
+        //this.passwordEncoder = passwordEncoder;
     }
 
     public Usuario registrar(Usuario u) {
@@ -42,7 +41,6 @@ public class UsuarioService {
     public Usuario create(String username, String rawPassword, String rol) {
         Usuario u = Usuario.builder()
                 .username(username)
-                .password(passwordEncoder.encode(rawPassword))
                 .rol(rol)
                 .build();
         return usuarioRepository.save(u);
