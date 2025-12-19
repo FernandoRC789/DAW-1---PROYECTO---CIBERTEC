@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "ciudadanos")
+@Table(name = "ciudadano")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,8 +16,10 @@ public class Ciudadano {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String nombres;
 
+    @Column(nullable = false)
     private String apellidos;
 
     @Column(unique = true, nullable = false)
@@ -25,5 +27,5 @@ public class Ciudadano {
 
     private String direccion;
     private String telefono;
-    private String email;
+    private String correo;
 }
