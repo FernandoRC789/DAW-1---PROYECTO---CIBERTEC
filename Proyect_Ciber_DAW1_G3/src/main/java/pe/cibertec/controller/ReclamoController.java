@@ -45,8 +45,17 @@ public class ReclamoController {
             @RequestBody Reclamo datos) {
 
         return reclamoService.findById(id).map(r -> {
-            datos.setId(id);
-            return ResponseEntity.ok(reclamoService.save(datos));
+
+            r.setAsunto(datos.getAsunto());
+            r.setDescripcion(datos.getDescripcion());
+            r.setDireccionAfectada(datos.getDireccionAfectada());
+            r.setFotoUrl(datos.getFotoUrl());
+            r.setCiudadano(datos.getCiudadano());
+            r.setTipoReclamo(datos.getTipoReclamo());
+            r.setPrioridad(datos.getPrioridad());
+
+            return ResponseEntity.ok(reclamoService.save(r));
+
         }).orElse(ResponseEntity.notFound().build());
     }
 

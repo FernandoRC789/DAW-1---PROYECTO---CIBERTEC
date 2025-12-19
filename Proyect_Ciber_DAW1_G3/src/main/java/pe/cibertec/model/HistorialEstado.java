@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "historial_estado")
@@ -31,4 +32,5 @@ public class HistorialEstado {
 
     @Column(name = "fecha_cambio")
     private LocalDateTime fechaCambio;
+
 }
