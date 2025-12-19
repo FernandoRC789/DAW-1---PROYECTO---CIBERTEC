@@ -1,5 +1,7 @@
 package pe.cibertec.service;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import pe.cibertec.model.EstadoReclamo;
@@ -18,6 +20,8 @@ public class ReclamoService {
     private final ReclamoRepository reclamoRepository;
     private final HistorialEstadoService historialService;
     private final UsuarioService usuarioService;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public ReclamoService(ReclamoRepository reclamoRepository,
                           HistorialEstadoService historialService,
@@ -46,19 +50,51 @@ public class ReclamoService {
     }
 
     public List<Reclamo> findAll() {
-        return reclamoRepository.findAll();
+        List<Reclamo> reclamos = reclamoRepository.findAll();
+        reclamos.forEach(r -> {
+            r.getCiudadano().getNombres();
+            r.getTipoReclamo().getNombre();
+            r.getPrioridad().getNombre();
+        });
+        return reclamos;
     }
 
     public Optional<Reclamo> findById(Long id) {
-        return reclamoRepository.findById(id);
+        Optional<Reclamo> optional = reclamoRepository.findById(id);
+        optional.ifPresent(r -> {
+            r.getCiudadano().getId();
+            r.getTipoReclamo().getId();
+            r.getPrioridad().getId();
+        });
+        return optional;
     }
 
+    @Transactional
     public Reclamo save(Reclamo reclamo) {
+
         if (reclamo.getId() == null) {
             reclamo.setFechaRegistro(LocalDateTime.now());
             reclamo.setEstado(EstadoReclamo.REGISTRADO);
         }
-        return reclamoRepository.save(reclamo);
+
+        // Guardar reclamo
+        Reclamo saved = reclamoRepository.save(reclamo);
+
+        // Recargar relaciones completas
+        if (saved.getCiudadano() != null) {
+            saved.setCiudadano(entityManager
+                    .find(saved.getCiudadano().getClass(), saved.getCiudadano().getId()));
+        }
+        if (saved.getTipoReclamo() != null) {
+            saved.setTipoReclamo(entityManager
+                    .find(saved.getTipoReclamo().getClass(), saved.getTipoReclamo().getId()));
+        }
+        if (saved.getPrioridad() != null) {
+            saved.setPrioridad(entityManager
+                    .find(saved.getPrioridad().getClass(), saved.getPrioridad().getId()));
+        }
+
+        return saved;
     }
 
     public List<Reclamo> findByCiudadanoId(Long ciudadanoId) {
@@ -116,8 +152,13 @@ public class ReclamoService {
     // =============================
     @Transactional
     public void delete(Long id) {
+        // borrar historial primero
+        historialService.deleteByReclamoId(id);
+
+        // luego borrar el reclamo
         reclamoRepository.deleteById(id);
     }
+
 
     // =============================
     // Cambiar el estado del reclamo
