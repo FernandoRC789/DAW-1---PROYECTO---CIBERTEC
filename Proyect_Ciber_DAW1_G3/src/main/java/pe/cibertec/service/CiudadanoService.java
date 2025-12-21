@@ -5,7 +5,6 @@ import pe.cibertec.model.Ciudadano;
 import pe.cibertec.repository.CiudadanoRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CiudadanoService {
@@ -23,28 +22,7 @@ public class CiudadanoService {
         return ciudadanoRepository.save(c);
     }
 
-    public Ciudadano buscarPorDni(String dni) {
-        return ciudadanoRepository.findByDni(dni)
-                .orElse(null);
-    }
-
-    public List<Ciudadano> findAll() {
-        return ciudadanoRepository.findAll();
-    }
-
-    public Optional<Ciudadano> findById(Long id) {
-        return ciudadanoRepository.findById(id);
-    }
-
-    public Optional<Ciudadano> findByDni(String dni) {
-        return ciudadanoRepository.findByDni(dni);
-    }
-
-    public Ciudadano save(Ciudadano c) {
-        return ciudadanoRepository.save(c);
-    }
-
-    public Ciudadano update(Long id, Ciudadano data) {
+    public Ciudadano actualizarCiudadano(Long id, Ciudadano data) {
         return ciudadanoRepository.findById(id).map(c -> {
             c.setNombres(data.getNombres());
             c.setApellidos(data.getApellidos());
@@ -56,11 +34,16 @@ public class CiudadanoService {
         }).orElseThrow(() -> new RuntimeException("Ciudadano no encontrado: " + id));
     }
 
-    public void delete(Long id) {
-        ciudadanoRepository.deleteById(id);
+    public List<Ciudadano> listar() {
+        return ciudadanoRepository.findAll();
     }
 
-    public boolean existsByDni(String dni) {
-        return ciudadanoRepository.existsByDni(dni);
+    public Ciudadano buscarPorId(Long id) {
+        return ciudadanoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Ciudadano no encontrado: " + id));
+    }
+
+    public void eliminar(Long id) {
+        ciudadanoRepository.deleteById(id);
     }
 }

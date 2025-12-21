@@ -16,10 +16,6 @@ public class HistorialEstadoService {
         this.historialEstadoRepository = historialEstadoRepository;
     }
 
-    public void registrarCambio(HistorialEstado h) {
-        historialEstadoRepository.save(h);
-    }
-
     public HistorialEstado save(HistorialEstado h) {
         return historialEstadoRepository.save(h);
     }
@@ -33,5 +29,4 @@ public class HistorialEstadoService {
         historialEstadoRepository.findByReclamoId(reclamoId)
                 .forEach(historialEstadoRepository::delete);
     }
-
 }

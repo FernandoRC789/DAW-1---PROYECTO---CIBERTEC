@@ -1,0 +1,62 @@
+<div class="container">
+
+  <!-- PANEL IZQUIERDO -->
+  <div class="left-panel">
+    <div class="image" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDs_DNZwGDvi4wSkJtZls1Z_-iSTtORtWcd3jaxbBQOl_nnwZo8zji2mZR6kHCYtKrgk549CB9uyKpXcyXUxftMDwC6jCMPNLiDNkIdKoxlp3L0GCXu4qBS0XPDFbc2TMZnyO4ipRBB4-WNUjlI_4-9A5eDn5CHcLaacrf4Gi8M-km1bWIA-mCjnEvQ_WApMDPaKBBC9vQn024guBJGIUsEjwdC5mmUtIahxFzy9OPFmE8s4gnwvI3h65LNaNvJip8gvUUXLkDj2gA1');"></div>
+  </div>
+
+  <!-- PANEL DERECHO -->
+  <div class="right-panel">
+    <div class="card">
+
+      <div class="header">
+        <svg viewBox="0 0 48 48" fill="none">
+          <path d="M24 4L14 14L4 24L14 34L24 44L34 34L44 24L34 14L24 4Z"
+                stroke="currentColor" stroke-width="4"/>
+          <circle cx="24" cy="24" r="5" stroke="currentColor" stroke-width="4"/>
+        </svg>
+        <h1>Bienvenido</h1>
+        <p>Ingresa tus credenciales para acceder al portal.</p>
+      </div>
+
+      <form (ngSubmit)="ingresar()">
+
+        <div class="form-group">
+          <div>
+            <label>Usuario</label>
+            <div class="input-wrapper">
+              <input type="text" placeholder="Ingresa tu usuario" [(ngModel)]="username" name="username" required>
+            </div>
+          </div>
+
+          <div>
+            <label>Contraseña</label>
+            <div class="input-wrapper">
+              <input type="password" placeholder="Ingresa tu contraseña" [(ngModel)]="password" name="password" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="options">
+          <label>
+            <input type="checkbox">
+            Recordarme
+          </label>
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit">Iniciar Sesión</button>
+
+        <p style="color:red" *ngIf="error">{{ error }}</p>
+
+      </form>
+
+      <div class="footer-links">
+        <a href="#">Términos de Servicio</a> |
+        <a href="#">Política de Privacidad</a>
+      </div>
+
+    </div>
+  </div>
+
+</div>

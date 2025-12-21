@@ -1,0 +1,74 @@
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div>
+      <div class="brand">
+        <div class="brand-logo" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuDv5NMmBbnaQ5O226b6N1dpsGRvXnVKitsTKJWmblfhPEelKd_uweVkPZgHoSmHL_jMKT3_Ps5G-1-pK22hdl148W1jQ8dRha6pgPnoJf8qwIhKyKfx6YjYsGuQvv-ItwvKHHi7_wV2MghFSriw1BhSHQzO5tVtegLwq-ZhpDpVBYQvRz6I47L4QR8Rg77vhCfJoPLj0ZL1ddWfHUh6ylZ4UP9sv__f_3ExQ3kVKjPAB4RXyBLh1xIgC5785L0BAKrVD_EYNM8Eks4D')"></div>
+        <div>
+          <h1>Portal Municipal</h1>
+          <p>Administración</p>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a href="#">Dashboard</a>
+        <a class="active" href="#">Gestión de Ciudadanos</a>
+        <a href="#">Reclamos</a>
+        <a href="#">Configuración</a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <a href="#"><span class="material-symbols-outlined">help</span>Ayuda</a>
+      <a href="#"><span class="material-symbols-outlined">logout</span>Cerrar Sesión</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+    <div class="page-header">
+      <h2>Gestión de Ciudadanos</h2>
+      <p>Crea, busca, actualiza y elimina perfiles de ciudadanos.</p>
+    </div>
+
+    <div class="card">
+      <div class="search-row">
+        <div class="search-box">
+          <span class="material-symbols-outlined">search</span>
+          <input placeholder="Buscar por nombre, DNI, etc." [(ngModel)]="searchTerm">
+        </div>
+        <button class="btn btn-primary" routerLink="/registrar-ciudadano">
+          Añadir Ciudadano
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Tabla -->
+    <div class="table-wrapper card">
+      <div *ngIf="cargando" style="padding:16px; font-weight:bold;">Cargando ciudadanos...</div>
+      <table *ngIf="!cargando">
+        <thead>
+        <tr>
+          <th>Nombre Completo</th><th>DNI</th><th>Dirección</th><th>Teléfono</th><th>Correo</th><th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let c of filtrar()">
+          <td>{{c.nombres}} {{c.apellidos}}</td>
+          <td>{{c.dni}}</td>
+          <td>{{c.direccion}}</td>
+          <td>{{c.telefono}}</td>
+          <td>{{c.correo}}</td>
+          <td class="actions">
+            <button>✏</button>
+            <button>👁</button>
+            <button (click)="eliminar(c.id)">🗑</button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>

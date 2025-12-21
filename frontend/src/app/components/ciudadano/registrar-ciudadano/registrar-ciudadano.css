@@ -1,0 +1,21 @@
+input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 16px;
+  margin-right: 8px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: #137fec;
+  color: white;
+}
